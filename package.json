@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Clinic Appointment Booking System - MERN Stack",
   "scripts": {
+    "start": "node server/index.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "server": "nodemon server/index.js",
     "client": "cd client && npm start",
