@@ -16,9 +16,14 @@ const path = require('path');
 
 // Serve React build in production
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../client/build')));
+  const buildPath = path.resolve(__dirname, '../client/build');
+
+  // serve static files
+  app.use(express.static(buildPath));
+
+  // send React index.html for all other routes
   app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+    res.sendFile(path.resolve(buildPath, 'index.html'));
   });
 }
 
