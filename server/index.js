@@ -27,14 +27,9 @@ app.use('/api/admin',        require('./routes/admin'));
 app.get('/', (req, res) => res.json({ message: 'Clinic API running' }));
 // Serve React build in production
 if (process.env.NODE_ENV === 'production') {
-  const buildPath = path.resolve(__dirname, '../client/build');
-
-  // serve static files
-  app.use(express.static(buildPath));
-
-  // send React index.html for all other routes
+  app.use(express.static(path.join(__dirname, '../client/build')));
   app.get('*', (req, res) => {
-    res.sendFile(path.resolve(buildPath, 'index.html'));
+    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
   });
 }
 app.use((err, req, res, next) => {
